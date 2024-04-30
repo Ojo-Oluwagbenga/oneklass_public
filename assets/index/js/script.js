@@ -1,4 +1,5 @@
 let school_code = 'OAU'
+let api_base_url = 'https://192.168.43.172:8000/open'
 
 function loadLiker_downloader(){
 
@@ -19,12 +20,12 @@ function loadLiker_downloader(){
     }
     axios({
         method: 'POST',
-        url: window.location.origin +"/api/apkdownloader/download_like",
-        headers: {
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache',
-            "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
-        },
+        url: api_base_url +"/api/apkdownloader/download_like",
+        // headers: {
+        //     'Cache-Control': 'no-cache',
+        //     'Pragma': 'no-cache',
+        //     "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
+        // },
         data: {
           school_code:"OAU",
           version_code:likeid.split("_")[1],
@@ -60,14 +61,67 @@ function loadLiker_downloader(){
 
 
 function load_apks(){
+  let vdata = {}
+  let cdata = {}
+  let text = `<div class="col-lg-6 col-12 mb-4 mb-lg-0" id="1.2">
+            <div class="custom-block d-flex">
+                <div class="">
+                    <div class="custom-block-icon-wrap">
+                        <div class="section-overlay"></div>
+                        <a href="detail-page.html" class="custom-block-image-wrap">
+                            <img src="assets/index/images/oneklass_logo.png" class="custom-block-image img-fluid" alt="">
+
+                        </a>
+                    </div>
+
+                    <div class="mt-2">
+                        <a id="vdownloads_1.2" code="1.2" style="display:block; text-align:center" class="vdownloads downloader btn custom-btn">
+                            Install
+                        </a>
+                    </div>
+                </div>
+
+                <div class="custom-block-info">
+                    <div class="custom-block-top d-flex mb-1">
+                        <small class="me-4">
+                            <i class="bi-download"></i>
+                            23MB
+                        </small>
+
+                        <small>Version <span class="badge">v.1.0 on 12th May 2024</span></small>
+                    </div>
+
+                    <h5 class="mb-2">
+                        <a href="detail-page.html">
+                            Fly solo
+                        </a>
+                    </h5>
+
+                    <p class="mb-0">A pre launch test version</p>
+
+                    <div class="custom-block-bottom justify-content-between mt-3">
+                        <a id="likerid_${vdata.version_code}" class="downl_like liker bi-heart me-1">
+                            <span>29</span>
+                        </a>
+
+                        <a id="downloadid_${vdata.version_code}" class="downl_like downloader bi-download" style="margin-left:10px">
+                            <span style="font-weight:${cdata["likerid_"+vdata.version_code] ? "bold":"normal"}">21</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>`;
+        $("#recent_releases").prepend(text)
+        return
   axios({
       method: 'POST',
-      url: window.location.origin +"/api/apkdownloader/fetch_school_all_data",
-      headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache',
-          "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
-      },
+      url: api_base_url +"/api/apkdownloader/fetch_school_all_data",
+      // headers: {
+      //     'Cache-Control': 'no-cache',
+      //     'Pragma': 'no-cache',
+      //     "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
+      // },
       data: {
         school_code:"OAU"
       }
@@ -148,12 +202,12 @@ function load_apks(){
       $("#d_latest").click(()=>{
           axios({
               method: 'POST',
-              url: window.location.origin +"/api/apkdownloader/download_like",
-              headers: {
-                  'Cache-Control': 'no-cache',
-                  'Pragma': 'no-cache',
-                  "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
-              },
+              url: api_base_url +"/api/apkdownloader/download_like",
+              // headers: {
+              //     'Cache-Control': 'no-cache',
+              //     'Pragma': 'no-cache',
+              //     "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
+              // },
               data: {
                 school_code:"OAU",
                 version_code:code,
@@ -175,12 +229,12 @@ function load_apks(){
           console.log("code", code);
           axios({
               method: 'POST',
-              url: window.location.origin +"/api/apkdownloader/download_like",
-              headers: {
-                  'Cache-Control': 'no-cache',
-                  'Pragma': 'no-cache',
-                  "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
-              },
+              url: api_base_url +"/api/apkdownloader/download_like",
+              // headers: {
+              //     'Cache-Control': 'no-cache',
+              //     'Pragma': 'no-cache',
+              //     "X-CSRFToken" : $("input[name='csrfmiddlewaretoken']").val()
+              // },
               data: {
                 school_code:"OAU",
                 version_code:code,
